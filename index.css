@@ -1,0 +1,32 @@
+div ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    display: block;
+    padding: 8px;
+    background-color: rgb(241, 206, 206);
+}    
+
+div ul li:hover {
+    background-color: rgb(211, 165, 165);
+}
+
+div ul li {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a.active {
+    background-color: rgb(199, 95, 135);
+    color: white;
+}
+  
+
+
+  

@@ -117,6 +117,48 @@ const getAnIngredient = () => {
 }
 
 const addIngredient = () => {
-    
+    let ingrName = document.getElementById('ingrName').value;
+    let ingrCategory = document.getElementById('ingrCategory').value;
+    let ingrQuantity = document.getElementById('ingrQuantity').value;
+    let ingrThreshold = document.getElementById('ingrThreshold').value;
+    let ingrExpiryDate = document.getElementById('ingrExpiry').value;
+
+    const ingrObject = {
+        n        quantity: ingrQuantity,
+        threshold: ingrThreshold,
+        expiryDate: ingrExpiryDate,
+    } 
+
+    let ingrJSON = JSON.stringify(ingrObject);
+
+    makeRequest("POST", "http://localhost:8080/BakingInventory/api/ingredient/addIngredient", ingrJSON)
+    .then((req) => {
+        console.log(ingrJSON);
+    })
+    .catch((error) => {console.log(error.message)});
+
 }
+
+const removeIngredient = () => {
+    let ingredientToRemove = document.getElementById('idIngredient').value;
+    makeRequest("DELETE", "http://localhost:8080/BakingInventory/api/ingredient/removeIngredient/" + ingredientToRemove)
+    .then( (req) => {
+        console.log(req.responseText);
+    })
+    .catch((error) => { console.log(error.message) })
+
+}
+
+const updateIngredient = () => {
+    let ingredientToUpdate = document.getElementById('idIngredient').value;
+    makeRequest("PUT", "http://localhost:8080/BakingInventory/api/ingredient/updateIngredient/" + ingredientToUpdate)
+    .then((req) => {
+        console.log(req.responseText);
+    }
+
+
+    )
+}
+
+
 

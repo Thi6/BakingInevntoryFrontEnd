@@ -10,7 +10,9 @@
         <input id="idIngredient" type="number" placeholder="Search">
         <input type="button" value="Search" onclick="getAnIngredient()">
         <input type="button" value="All" onclick="getAllIngredients()">
-        <input type="button" value="add" onclick="addIngredient()">
+        <input type="button" value="Add" onclick="addIngredient()">
+        <input type="button" value="Remove" onclick="removeIngredient()">
+        <input type="button" value="Update" onclick="updateIngredient()">
 
         <table id="ingredientTable">
             <th>Id</th>
@@ -21,6 +23,28 @@
             <th>Expiry Date</th>
         </table>
 
+        <div id="addingForm">
+            Name:
+            <input id="ingrName" type="text" placeholder="Name of ingredient">
+            <br>
+            Category:
+            <select id="ingrCategory">
+                <option value="pantry">Pantry</option>
+                <option value="fridge">Fridge</option>
+                <option value="freezer">Freezer</option>
+                <option value="decoration">Decoration</option>
+            </select>
+            <br>
+            Quantity:
+            <input id="ingrQuantity" type="number" placeholder="Quantity">
+            <br>
+            Threshold:
+            <input id="ingrThreshold" type="number" placeholder="Minimum threshold">
+            <br>
+            Expiry date:
+            <input id="ingrExpiry" type="text" placeholder="i.e. dd/mm/yyyy">
+        </div>
+       
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

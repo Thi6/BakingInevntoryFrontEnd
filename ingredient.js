@@ -1,4 +1,6 @@
-const ipAddress = "34.77.214.205:8888";
+//const ipAddress = "34.77.214.205:8888";
+
+const ipAddress = "localhost:8080";
 
 const makeRequest = (method, url, body) => {
    
@@ -137,6 +139,7 @@ const addIngredient = () => {
 
     makeRequest("POST", "http://"+ipAddress +"/BakingInventory/api/ingredient/addIngredient", ingrJSON)
     .then((req) => {
+        getAllIngredients();
         console.log(ingrJSON);
     })
     .catch((error) => {console.log(error.message)});
@@ -147,6 +150,7 @@ const removeIngredient = () => {
     let ingredientToRemove = document.getElementById('idIngredient').value;
     makeRequest("DELETE", "http://" + ipAddress + "/BakingInventory/api/ingredient/removeIngredient/" + ingredientToRemove)
     .then( (req) => {
+        getAllIngredients();
         console.log(req.responseText);
     })
     .catch((error) => { console.log(error.message) })
@@ -155,14 +159,29 @@ const removeIngredient = () => {
 
 const updateIngredient = () => {
     let ingredientToUpdate = document.getElementById('idIngredient').value;
-    makeRequest("PUT", "http://" + ipAddress + "/BakingInventory/api/ingredient/updateIngredient/" + ingredientToUpdate)
+
+    let ingrName = document.getElementById('ingrName').value;
+    let ingrCategory = document.getElementById('ingrCategory').value;
+    let ingrQuantity = document.getElementById('ingrQuantity').value;
+    let ingrThreshold = document.getElementById('ingrThreshold').value;
+    let ingrExpiryDate = document.getElementById('ingrExpiry' ).value;
+
+    const ingrObject = {
+        name: ingrName,
+        category: ingrCategory,
+        quantity: ingrQuantity,
+        threshold: ingrThreshold,
+        expiryDate: ingrExpiryDate,
+    } 
+
+    
+    makeRequest("PUT", "http://" + ipAddress + "/BakingInventory/api/ingredient/updateIngredient/" + ingredientToUpdate, JSON.stringify(ingrObject))
     .then((req) => {
+
         console.log(req.responseText);
-    }
 
-
-    )
+    })
+    .catch((error) => { console.log(error.message) })
 }
 
-
-
+getAllIngredients();

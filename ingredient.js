@@ -1,3 +1,5 @@
+const ipAddress = "34.77.214.205:8888";
+
 const makeRequest = (method, url, body) => {
    
     return new Promise ( (res, rej) => {
@@ -28,7 +30,7 @@ const getAllIngredients = () => {
             tableContainer.deleteRow(i - 1);
         }
     }
-    makeRequest("GET", "http://localhost:8080/BakingInventory/api/ingredient/getAllIngredients")
+    makeRequest("GET", "http://" + ipAddress + "/BakingInventory/api/ingredient/getAllIngredients")
     .then( (req) => {
         let data = JSON.parse(req.responseText);
         console.log(data);
@@ -80,7 +82,7 @@ const getAnIngredient = () => {
     }
 
 
-    makeRequest("GET", "http://localhost:8080/BakingInventory/api/ingredient/getAnIngredient/" + ingredientToSearch)
+    makeRequest("GET", "http://" + ipAddress + "/BakingInventory/api/ingredient/getAnIngredient/" + ingredientToSearch)
     .then((req) => {
         data = JSON.parse(req.responseText);
         console.log(data);
@@ -121,17 +123,17 @@ const addIngredient = () => {
     let ingrCategory = document.getElementById('ingrCategory').value;
     let ingrQuantity = document.getElementById('ingrQuantity').value;
     let ingrThreshold = document.getElementById('ingrThreshold').value;
-    let ingrExpiryDate = document.getElementById('ingrExpiry').value;
+    let ingrExpiryDate = document.getElementById('ingrExpiry' ).value;
 
     const ingrObject = {
-        n        quantity: ingrQuantity,
+        quantity: ingrQuantity,
         threshold: ingrThreshold,
         expiryDate: ingrExpiryDate,
     } 
 
     let ingrJSON = JSON.stringify(ingrObject);
 
-    makeRequest("POST", "http://localhost:8080/BakingInventory/api/ingredient/addIngredient", ingrJSON)
+    makeRequest("POST", "http://"+ipAddress +"/BakingInventory/api/ingredient/addIngredient", ingrJSON)
     .then((req) => {
         console.log(ingrJSON);
     })
@@ -141,7 +143,7 @@ const addIngredient = () => {
 
 const removeIngredient = () => {
     let ingredientToRemove = document.getElementById('idIngredient').value;
-    makeRequest("DELETE", "http://localhost:8080/BakingInventory/api/ingredient/removeIngredient/" + ingredientToRemove)
+    makeRequest("DELETE", "http://" + ipAddress + "/BakingInventory/api/ingredient/removeIngredient/" + ingredientToRemove)
     .then( (req) => {
         console.log(req.responseText);
     })
@@ -151,7 +153,7 @@ const removeIngredient = () => {
 
 const updateIngredient = () => {
     let ingredientToUpdate = document.getElementById('idIngredient').value;
-    makeRequest("PUT", "http://localhost:8080/BakingInventory/api/ingredient/updateIngredient/" + ingredientToUpdate)
+    makeRequest("PUT", "http://" + ipAddress + "/BakingInventory/api/ingredient/updateIngredient/" + ingredientToUpdate)
     .then((req) => {
         console.log(req.responseText);
     }

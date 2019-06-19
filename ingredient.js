@@ -126,6 +126,8 @@ const addIngredient = () => {
     let ingrExpiryDate = document.getElementById('ingrExpiry' ).value;
 
     const ingrObject = {
+        name: ingrName,
+        category: ingrCategory,
         quantity: ingrQuantity,
         threshold: ingrThreshold,
         expiryDate: ingrExpiryDate,
